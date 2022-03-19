@@ -6,15 +6,20 @@ final class ThreadSafeDictionaryTests: XCTestCase {
         let dict = ThreadSafeDictionary<String, String>()
         var data = await dict.data
         XCTAssertEqual([:], data)
-        await dict.set("hello", to: "world")
+        _ = await dict.set("hello", to: "world")
         
         data = await dict.data
         XCTAssertEqual(["hello": "world"], data)
+        
+        let oldValue = await dict.set("hello", to: "you")
+        data = await dict.data
+        XCTAssertEqual(["hello": "you"], data)
+        XCTAssertEqual(oldValue, "world")
     }
     
     func testCopy() async throws {
         let dict = ThreadSafeDictionary<String, String>()
-        await dict.set("hello", to: "world")
+        _ = await dict.set("hello", to: "world")
         let copy = await dict.copy()
         
         XCTAssertNotIdentical(dict, copy)
@@ -24,7 +29,7 @@ final class ThreadSafeDictionaryTests: XCTestCase {
         
         XCTAssertEqual(originalData, copyData)
         
-        await dict.set("hey", to: "you")
+        _ = await dict.set("hey", to: "you")
         
         originalData = await dict.data
         copyData = await copy.data
