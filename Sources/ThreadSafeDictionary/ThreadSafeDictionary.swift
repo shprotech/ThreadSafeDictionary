@@ -467,13 +467,18 @@ public actor ThreadSafeDictionary<Key: Hashable, Value> {
     /**
      Returns a subsequence containing all but the given number of initial
      elements.
+     
      If the number of elements to drop exceeds the number of elements in
      the collection, the result is an empty subsequence.
-         let numbers = [1, 2, 3, 4, 5]
-         print(numbers.dropFirst(2))
-         // Prints "[3, 4, 5]"
-         print(numbers.dropFirst(10))
-         // Prints "[]"
+     
+     ```swift
+     let numbers = [1, 2, 3, 4, 5]
+     print(numbers.dropFirst(2))
+     // Prints "[3, 4, 5]"
+     print(numbers.dropFirst(10))
+     // Prints "[]"
+     ```
+     
      - Parameter k: The number of elements to drop from the beginning of
        the collection. `k` must be greater than or equal to zero.
      - Returns: A subsequence starting after the specified number of
