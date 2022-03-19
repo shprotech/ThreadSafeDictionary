@@ -1,3 +1,3 @@
 # ThreadSafeDictionary
 
-A description of this package.
+A thread safe implementation of Swift's dictionaty.
