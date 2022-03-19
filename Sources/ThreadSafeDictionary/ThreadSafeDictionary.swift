@@ -1,0 +1,6 @@
+public struct ThreadSafeDictionary {
+    public private(set) var text = "Hello, World!"
+
+    public init() {
+    }
+}
